@@ -9,6 +9,8 @@ function App() {
     // Dynamically get my data.
 
     const posts = useSelector((state) => state.articles);
+    const error = useSelector((state) => state.error);
+    const loading = useSelector((state) => state.loading);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -16,6 +18,13 @@ function App() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    if (error) {
+        return <h1>{error}</h1>;
+    }
+    if (loading) {
+        return <h1>Loading . . .</h1>;
+    }
+    
     return (
         <div className="container">
             <div className="row">
