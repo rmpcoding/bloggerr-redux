@@ -1,3 +1,4 @@
+import { GET_ARTICLES } from "../constants/action-types";
 import axios from 'axios';
 
 export function getArticles() {
@@ -6,7 +7,7 @@ export function getArticles() {
             .get('https://jsonplaceholder.typicode.com/posts')
             .then((response) => {
                 dispatch({
-                    type: 'GET_ARTICLES',
+                    type: GET_ARTICLES,
                     payload: response.data,
                 });
             });
