@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 const Post = ({ id, userId, title, body }) => {
     return (
         <div>
-            <h2>This will be our title</h2>
+            <h2>Title: {title}</h2>
             <p>
-                <strong>User ID</strong>
+                <strong>User ID: {userId}</strong>
             </p>
             <p>
-                <strong>Post ID</strong>
+                <strong>Post ID: {id}</strong>
             </p>
             <p>{body}</p>
         </div>
