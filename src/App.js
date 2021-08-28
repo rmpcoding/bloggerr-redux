@@ -1,35 +1,26 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useEffect } from 'react';
 import Posts from './components/Posts/Posts';
+import { useSelector, useDispatch } from 'react-redux';
+import { getArticles } from './redux/actions';
 
 function App() {
     // Hardcode UI.
     // Hard code data, set the UI to use that data.
     // Dynamically get my data.
 
-    const [posts, setPosts] = useState([]);
-    const [myPosts, setMyPosts] = useState([]);
+    const posts = useSelector((state) => state.articles);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        axios
-            .get('https://jsonplaceholder.typicode.com/posts')
-            .then((response) => {
-                setPosts(response.data);
-                const filteredPosts = response.data.filter(
-                    (post) => post.userId === 1
-                );
-                setMyPosts(filteredPosts);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        dispatch(getArticles());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
         <div className="container">
             <div className="row">
                 <Posts posts={posts} title="All Posts" />
-                <Posts posts={myPosts} title="My Posts" />
+                {/* <Posts posts={myPosts} title="My Posts" /> */}
             </div>
         </div>
     );
